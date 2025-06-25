@@ -1,0 +1,149 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #eef5fc;
+  text-align: center;
+  padding: 20px;
+  margin: 0;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.board-container {
+  display: inline-block;
+  user-select: none;
+  margin-top: 20px;
+}
+
+/* Coordenadas horizontales */
+.coords-row {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 32px; /* espacio para la columna de coordenadas izquierda */
+}
+
+.corner {
+  width: 32px;
+  height: 32px;
+}
+
+.coord {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #333;
+  box-sizing: border-box;
+}
+
+/* Coordenadas superiores */
+.coords-row .coord {
+  border-bottom: 2px solid #fff;
+}
+
+/* Coordenadas verticales */
+.coords-col {
+  display: flex;
+  flex-direction: column;
+  background-color: #d9d9d9;
+}
+
+.coords-col .coord {
+  border-right: 2px solid #fff;
+}
+
+/* Contenedor tablero + coordenadas verticales */
+.board-with-rows {
+  display: flex;
+}
+
+/* Tablero 9x9 con márgenes entre celdas */
+.board {
+  display: grid;
+  grid-template-columns: repeat(9, 32px);
+  grid-template-rows: repeat(9, 32px);
+  gap: 2px;
+  background-color: #d9d9d9;
+  padding: 2px;
+}
+
+/* Celdas del juego */
+.cell {
+  width: 32px;
+  height: 32px;
+  background-color: #bde0fe;
+  border: 1px solid #fff;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* Estados */
+.cell.empty {
+  background-color: #d9d9d9;
+}
+
+.cell.hit {
+  background-color: #d90429;
+}
+
+.cell.miss {
+  background-color: #464646;
+}
+
+.cell.ship {
+  background-color: transparent;
+  border: 2px solid orange;
+}
+
+/* Controles debajo */
+.controls {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Input flotante oscuro */
+input[type="number"] {
+  background-color: #1e1e1e;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+  width: 120px;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  appearance: textfield;
+}
+
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Botones */
+button {
+  background-color: white;
+  border: 1px solid #aaa;
+  padding: 8px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover:not(:disabled) {
+  background-color: #f0f0f0;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

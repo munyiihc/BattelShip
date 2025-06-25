@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Battleship con coordenadas visibles</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>🚢 Battleship con coordenadas</h1>
+
+  <div class="board-container">
+    <!-- fila de coordenadas (columnas) -->
+    <div class="coords-row">
+      <div class="corner"></div> <!-- esquina vacía -->
+      <!-- coordenadas columna 0 a 9 -->
+      <div class="coord">0</div>
+      <div class="coord">1</div>
+      <div class="coord">2</div>
+      <div class="coord">3</div>
+      <div class="coord">4</div>
+      <div class="coord">5</div>
+      <div class="coord">6</div>
+      <div class="coord">7</div>
+      <div class="coord">8</div>
+      <div class="coord">9</div>
+    </div>
+
+    <!-- filas con coordenadas y tablero -->
+    <div class="board-with-rows">
+      <!-- Coordenadas filas -->
+      <div class="coords-col">
+        <div class="coord">0</div>
+        <div class="coord">1</div>
+        <div class="coord">2</div>
+        <div class="coord">3</div>
+        <div class="coord">4</div>
+        <div class="coord">5</div>
+        <div class="coord">6</div>
+        <div class="coord">7</div>
+        <div class="coord">8</div>
+        <div class="coord">9</div>
+      </div>
+
+      <!-- Tablero -->
+      <div id="game-board" class="board"></div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <input type="number" id="input-row" placeholder="Fila (0-9)" min="0" max="9" />
+    <input type="number" id="input-col" placeholder="Columna (0-9)" min="0" max="9" />
+    <button id="fire-button" disabled>Disparar</button>
+    <button id="show-ships-button">Mostrar barcos</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
