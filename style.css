@@ -16,13 +16,17 @@ h1 {
   display: inline-block;
   user-select: none;
   margin-top: 20px;
+  position: relative; /* Contenedor relativo para las coordenadas */
 }
 
 /* Coordenadas horizontales */
 .coords-row {
   display: flex;
-  justify-content: flex-start;
-  margin-left: 32px; /* espacio para la columna de coordenadas izquierda */
+  justify-content: space-around;
+  position: absolute;
+  top: -32px; /* Alinearlas arriba del tablero */
+  width: 100%;
+  left: 1px;
 }
 
 .corner {
@@ -39,10 +43,6 @@ h1 {
   font-size: 14px;
   color: #333;
   box-sizing: border-box;
-}
-
-/* Coordenadas superiores */
-.coords-row .coord {
   border-bottom: 2px solid #fff;
 }
 
@@ -50,16 +50,28 @@ h1 {
 .coords-col {
   display: flex;
   flex-direction: column;
+  justify-content:space-around;
+  position: absolute;
+  left: -32px; /* Alinearlas al borde izquierdo del tablero */
+  top: 0px;  /* Alinearlas al borde del tablero */
   background-color: #d9d9d9;
+  gap: 0.17rem;
 }
 
 .coords-col .coord {
+  width: 32px;
+  height: 32px;
   border-right: 2px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Contenedor tablero + coordenadas verticales */
 .board-with-rows {
   display: flex;
+  position: relative; /* Necesario para alinear las coordenadas con el tablero */
+  margin-left: 32px;  /* Espacio para las coordenadas verticales */
 }
 
 /* Tablero 9x9 con márgenes entre celdas */
@@ -83,7 +95,6 @@ h1 {
   transition: background-color 0.2s ease;
 }
 
-/* Estados */
 .cell.empty {
   background-color: #d9d9d9;
 }
@@ -98,7 +109,7 @@ h1 {
 
 .cell.ship {
   background-color: transparent;
-  border: 2px solid orange;
+  border: 1px solid orange;
 }
 
 /* Controles debajo */

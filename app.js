@@ -23,61 +23,68 @@ const showShipsButton = document.getElementById('show-ships-button');
 
 // Render del tablero con 100 divs dentro (flex-wrap: wrap)
 function renderBoard() {
-  board.innerHTML = '';
+  board.innerHTML = '';  // Limpiar el tablero antes de volver a renderizarlo
 
-  for(let r=0; r<10; r++) {
-    for(let c=0; c<10; c++) {
+  // Iterar de 0 a 8 para crear un tablero de 9x9
+  for (let r = 0; r < 9; r++) {
+    for (let c = 0; c < 9; c++) {
       const cell = document.createElement('div');
       cell.classList.add('cell');
 
-      const cellValue = gameBoard[r][c];
+      const cellValue = gameBoard[r][c]; // Acceder a las celdas del tablero
 
-      if(cellValue === 0) cell.classList.add('empty');
-      else if(cellValue === 1) {
-        if(shipsVisible) cell.classList.add('ship');
+      // Dependiendo del valor de la celda, asignar la clase correspondiente
+      if (cellValue === 0) cell.classList.add('empty');
+      else if (cellValue === 1) {
+        if (shipsVisible) cell.classList.add('ship');
         else cell.classList.add('empty');
       }
-      else if(cellValue === 2) cell.classList.add('hit');
-      else if(cellValue === 3) cell.classList.add('miss');
+      else if (cellValue === 2) cell.classList.add('hit');
+      else if (cellValue === 3) cell.classList.add('miss');
 
-      // Al hacer clic dispara directo en esta celda
+      // Al hacer clic en la celda, disparar directamente
       cell.addEventListener('click', () => {
-        fireTorpedo(r, c);
+        fireTorpedo(r, c);  // Pasar las coordenadas correctamente
       });
 
-      board.appendChild(cell);
+      board.appendChild(cell); // Añadir la celda al tablero
     }
   }
 }
 
 // Función disparar con coordenadas recibidas o con inputs
 function fireTorpedo(row, col) {
-  if(row === undefined || col === undefined) {
-    row = parseInt(inputRow.value, 10);
-    col = parseInt(inputCol.value, 10);
+  if (row === undefined || col === undefined) {
+    // Parsear correctamente las coordenadas ingresadas
+    row = parseInt(inputRow.value) - 1; // Restar 1 para que los índices sean de 0 a 8
+    col = parseInt(inputCol.value) - 1;
 
-    if(isNaN(row) || isNaN(col) || row < 0 || row > 9 || col < 0 || col > 9) {
-      alert('Por favor ingresa coordenadas válidas (0-9)');
+    // Validar que las coordenadas sean correctas
+    if (isNaN(row) || isNaN(col) || row < 0 || row > 8 || col < 0 || col > 8) {
+      alert('Por favor ingresa coordenadas válidas (1-9)');
       return;
     }
   }
 
-  if(gameBoard[row][col] === 2 || gameBoard[row][col] === 3) {
+  // Comprobar si ya se disparó en esa celda
+  if (gameBoard[row][col] === 2 || gameBoard[row][col] === 3) {
     alert('Ya disparaste en esta celda');
     return;
   }
 
-  if(gameBoard[row][col] === 1) {
-    gameBoard[row][col] = 2; // tocado
-  } else if(gameBoard[row][col] === 0) {
-    gameBoard[row][col] = 3; // fallido
+  // Si el disparo es a un barco
+  if (gameBoard[row][col] === 1) {
+    gameBoard[row][col] = 2; // Marca la celda como tocada
+  } else if (gameBoard[row][col] === 0) {
+    gameBoard[row][col] = 3; // Marca la celda como agua (fallo)
   }
 
+  // Limpiar los inputs y deshabilitar el botón
   inputRow.value = '';
   inputCol.value = '';
   fireButton.disabled = true;
 
-  renderBoard();
+  renderBoard(); // Volver a renderizar el tablero
 }
 
 // Mostrar u ocultar barcos
@@ -88,16 +95,16 @@ function toggleShips() {
 }
 
 // Habilitar botón disparar solo si ambos inputs tienen valor
+// Habilitar el botón de disparo solo si ambos inputs tienen valor
 function checkInputs() {
   fireButton.disabled = !(inputRow.value !== '' && inputCol.value !== '');
 }
 
-// Listeners
+// Listeners para entradas y disparo
 fireButton.addEventListener('click', () => fireTorpedo());
 showShipsButton.addEventListener('click', toggleShips);
 inputRow.addEventListener('input', checkInputs);
 inputCol.addEventListener('input', checkInputs);
-
 // Inicializar
 renderBoard();
 

@@ -10,11 +10,9 @@
   <h1>🚢 Battleship con coordenadas</h1>
 
   <div class="board-container">
-    <!-- fila de coordenadas (columnas) -->
+    <!-- fila de coordenadas horizontales -->
     <div class="coords-row">
       <div class="corner"></div> <!-- esquina vacía -->
-      <!-- coordenadas columna 0 a 9 -->
-      <div class="coord">0</div>
       <div class="coord">1</div>
       <div class="coord">2</div>
       <div class="coord">3</div>
@@ -26,11 +24,9 @@
       <div class="coord">9</div>
     </div>
 
-    <!-- filas con coordenadas y tablero -->
     <div class="board-with-rows">
-      <!-- Coordenadas filas -->
+      <!-- coordenadas verticales -->
       <div class="coords-col">
-        <div class="coord">0</div>
         <div class="coord">1</div>
         <div class="coord">2</div>
         <div class="coord">3</div>
@@ -42,14 +38,14 @@
         <div class="coord">9</div>
       </div>
 
-      <!-- Tablero -->
+      <!-- tablero de juego -->
       <div id="game-board" class="board"></div>
     </div>
   </div>
 
   <div class="controls">
-    <input type="number" id="input-row" placeholder="Fila (0-9)" min="0" max="9" />
-    <input type="number" id="input-col" placeholder="Columna (0-9)" min="0" max="9" />
+    <input type="number" id="input-row" placeholder="Fila (1-9)" min="1" max="9" />
+    <input type="number" id="input-col" placeholder="Columna (1-9)" min="1" max="9" />
     <button id="fire-button" disabled>Disparar</button>
     <button id="show-ships-button">Mostrar barcos</button>
   </div>
